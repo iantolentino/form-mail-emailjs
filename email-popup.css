@@ -1,0 +1,166 @@
+/* RESET */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+}
+
+/* OVERLAY */
+.ep-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(4px);
+  display: none;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+/* MODAL */
+.ep-container {
+  width: 100%;
+  max-width: 420px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+
+  overflow: hidden;
+}
+
+/* HEADER */
+.ep-header {
+  background: #0b3c5d;
+  color: #fff;
+  padding: 14px 16px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ep-header h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.ep-close {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* FORM AREA */
+form {
+  padding: 16px;
+  overflow-y: auto;
+}
+
+/* GRID */
+.ep-grid {
+  display: flex;
+  gap: 10px;
+}
+
+/* INPUTS */
+.ep-container input,
+.ep-container select,
+.ep-container textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+/* FOCUS */
+.ep-container input:focus,
+.ep-container select:focus,
+.ep-container textarea:focus {
+  border-color: #0b3c5d;
+  outline: none;
+  box-shadow: 0 0 4px rgba(11,60,93,0.3);
+}
+
+/* TEXTAREA */
+textarea {
+  resize: none;
+  height: 90px;
+}
+
+/* BUTTON */
+.ep-submit {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #0b3c5d, #1c6ea4);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* CHECKBOX FIX */
+.ep-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+/* KEY FIX: NORMAL SIZE CHECKBOX */
+.ep-checkbox input {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+/* STATUS */
+#ep-status {
+  padding: 10px 16px 16px;
+  font-size: 13px;
+}
+
+/* ===================== */
+/* 📱 MOBILE FIX */
+/* ===================== */
+@media (max-width: 480px) {
+  .ep-overlay {
+    align-items: center;   /* ✅ CENTER vertically */
+    justify-content: center;
+    padding: 16px;
+  }
+
+  .ep-container {
+    width: 100%;
+    max-width: 400px;
+
+    height: auto;
+    max-height: 90vh;
+
+    border-radius: 12px;
+  }
+
+  form {
+    overflow-y: auto;
+  }
+
+  .ep-grid {
+    flex-direction: column;
+  }
+
+}

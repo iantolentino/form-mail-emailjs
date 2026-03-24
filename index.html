@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nanox Style Inquiry</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="email-popup.css">
+
+  <!-- Google Font (modern corporate look) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<h1>My Test Website</h1>
+
+<button id="openPopupBtn" class="main-btn">Open Inquiry Form</button>
+
+<!-- POPUP -->
+<div id="emailPopup" class="ep-overlay">
+
+  <div class="ep-container">
+
+    <div class="ep-header">
+      <h2>Inquiry Form</h2>
+      <span class="ep-close" id="closePopupBtn">&times;</span>
+    </div>
+
+    <form id="ep-form">
+
+      <div class="ep-grid">
+        <input type="text" name="full_name" placeholder="Full Name" required>
+        <input type="text" name="company_name" placeholder="Company Name" required>
+      </div>
+
+      <div class="ep-grid">
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="number" name="phone" placeholder="Phone Number" required>
+      </div>
+
+      <select name="inquiry_type" required>
+        <option value="">Select Inquiry</option>
+        <option value="Customer/Business Inquiry">Customer/Business Inquiry</option>
+        <option value="Applicants and HR Concerns">Applicants and HR Concerns</option>
+        <option value="Procurement Inquiry">Procurement Inquiry</option>
+      </select>
+
+      <textarea name="message" placeholder="Message" required></textarea>
+
+<label class="ep-checkbox">
+  <input type="checkbox" name="consent" required>
+  <span>I agree to the processing of my personal data for this inquiry.</span>
+</label>
+
+      <button type="submit" class="ep-submit">Send Inquiry</button>
+
+    </form>
+
+    <p id="ep-status"></p>
+
+  </div>
+
+</div>
+
+<!-- JS -->
+<script src="email-popup.js"></script>
+
+</body>
+</html>
