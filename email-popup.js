@@ -65,12 +65,20 @@ document.getElementById("ep-form").addEventListener("submit", function(e) {
 
   })
   .then(() => {
+    console.log("Main email sent");
+  
+    return emailjs.send("service_a5rawyh", "template_autoreply", {
+      full_name: form.full_name.value,
+      inquiry_type: inquiry,
+      to_email: form.email.value,
+      reply_days: "2–3 business days"
+    });
+  })
+  .then(() => {
+    console.log("Auto-reply sent");
     status.innerHTML = "✅ Sent successfully! Please check your email.";
-    form.reset();
-    submitBtn.disabled = false;
   })
   .catch((error) => {
+    console.error("Error:", error);
     status.innerHTML = "❌ Failed: " + JSON.stringify(error);
-    submitBtn.disabled = false;
   });
-});
