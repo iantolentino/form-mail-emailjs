@@ -57,7 +57,7 @@ document.getElementById("ep-form").addEventListener("submit", function(e) {
     console.log("Main email sent");
 
     // 🔹 AUTO-REPLY (ONLY ONCE)
-    return emailjs.send("service_a5rawyh", "template_autoreply", {
+    return emailjs.send("service_a5rawyh", "template_tygqt22", {
       full_name: form.full_name.value,
       inquiry_type: inquiry,
       to_email: form.email.value,
