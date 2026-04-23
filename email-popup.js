@@ -41,11 +41,22 @@ document.getElementById("ep-form").addEventListener("submit", function(e) {
   const now = new Date();
   const formattedTime = now.toLocaleString();
 
+  // ✅ SAFE EMAIL EXTRACTION
+  const userEmail = form.querySelector('input[name="email"]').value;
+
+  console.log("USER EMAIL:", userEmail);
+
+  if (!userEmail) {
+    status.innerHTML = "❌ Email is empty";
+    submitBtn.disabled = false;
+    return;
+  }
+
   // 🔹 MAIN EMAIL
   emailjs.send("service_a5rawyh", "template_knmti4p", {
     full_name: form.full_name.value,
     company_name: form.company_name.value,
-    email: form.email.value,
+    email: userEmail,
     phone: form.phone.value,
     inquiry_type: inquiry,
     message: form.message.value,
@@ -56,11 +67,11 @@ document.getElementById("ep-form").addEventListener("submit", function(e) {
   .then(() => {
     console.log("Main email sent");
 
-    // 🔹 AUTO-REPLY (ONLY ONCE)
+    // 🔹 AUTO-REPLY
     return emailjs.send("service_a5rawyh", "template_tygqt22", {
       full_name: form.full_name.value,
       inquiry_type: inquiry,
-      to_email: form.email.value,
+      to_email: userEmail,
       reply_days: "2–3 business days"
     });
   })
@@ -76,4 +87,4 @@ document.getElementById("ep-form").addEventListener("submit", function(e) {
     submitBtn.disabled = false;
   });
 
-}); 
+});
