@@ -41,7 +41,7 @@ document.getElementById("ep-form").addEventListener("submit", function(e) {
   const now = new Date();
   const formattedTime = now.toLocaleString();
 
-  // 🔹 MAIN EMAIL (to your company)
+  // 🔹 MAIN EMAIL
   emailjs.send("service_a5rawyh", "template_knmti4p", {
     full_name: form.full_name.value,
     company_name: form.company_name.value,
@@ -54,19 +54,9 @@ document.getElementById("ep-form").addEventListener("submit", function(e) {
     to_email: to_email
   })
   .then(() => {
-
-    // 🔹 AUTO-REPLY EMAIL (to user)
-    return emailjs.send("service_a5rawyh", "template_autoreply", {
-      full_name: form.full_name.value,
-      inquiry_type: inquiry,
-      to_email: form.email.value,
-      reply_days: "2–3 business days"
-    });
-
-  })
-  .then(() => {
     console.log("Main email sent");
-  
+
+    // 🔹 AUTO-REPLY (ONLY ONCE)
     return emailjs.send("service_a5rawyh", "template_autoreply", {
       full_name: form.full_name.value,
       inquiry_type: inquiry,
@@ -77,8 +67,13 @@ document.getElementById("ep-form").addEventListener("submit", function(e) {
   .then(() => {
     console.log("Auto-reply sent");
     status.innerHTML = "✅ Sent successfully! Please check your email.";
+    form.reset();
+    submitBtn.disabled = false;
   })
   .catch((error) => {
     console.error("Error:", error);
     status.innerHTML = "❌ Failed: " + JSON.stringify(error);
+    submitBtn.disabled = false;
   });
+
+}); 
