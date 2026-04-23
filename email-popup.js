@@ -41,6 +41,7 @@ document.getElementById("ep-form").addEventListener("submit", function(e) {
   const now = new Date();
   const formattedTime = now.toLocaleString();
 
+  // 🔹 MAIN EMAIL (to your company)
   emailjs.send("service_a5rawyh", "template_knmti4p", {
     full_name: form.full_name.value,
     company_name: form.company_name.value,
@@ -53,7 +54,18 @@ document.getElementById("ep-form").addEventListener("submit", function(e) {
     to_email: to_email
   })
   .then(() => {
-    status.innerHTML = "✅ Sent successfully!";
+
+    // 🔹 AUTO-REPLY EMAIL (to user)
+    return emailjs.send("service_a5rawyh", "template_autoreply", {
+      full_name: form.full_name.value,
+      inquiry_type: inquiry,
+      to_email: form.email.value,
+      reply_days: "2–3 business days"
+    });
+
+  })
+  .then(() => {
+    status.innerHTML = "✅ Sent successfully! Please check your email.";
     form.reset();
     submitBtn.disabled = false;
   })
